@@ -1,0 +1,20 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Function to make the player invisible
+local function makeInvisible()
+    for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.Transparency = 1  -- Set transparency of body parts to fully invisible
+        elseif part:IsA("Decal") or part:IsA("Texture") then
+            part.Transparency = 1  -- Make face and other decals invisible
+        elseif part:IsA("Accessory") then
+            if part:FindFirstChild("Handle") then
+                part.Handle.Transparency = 1  -- Make accessory handles invisible
+            end
+        end
+    end
+end
+
+-- Call the function to make the character invisible
+makeInvisible()
